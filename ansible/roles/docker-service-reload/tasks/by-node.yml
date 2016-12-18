@@ -1,0 +1,10 @@
+---
+- name: Gather proxy container IDs from filter '{{ filter }}'
+  command: docker ps -q --filter {{ filter }}
+  changed_when: false
+  register: containers
+
+- name: "Send SIGHUP signal to containers"
+  command: "docker kill -s SIGHUP {{ containers.stdout_lines | join(' ') }}"
+  when: "{{ containers.stdout_lines | length }} > 0"
+

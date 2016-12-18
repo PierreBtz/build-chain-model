@@ -1,0 +1,27 @@
+---
+- include: ../../gluster-volume/tasks/main.yml
+
+- include: ../../docker-service/tasks/main.yml
+  vars:
+    name: ldap
+    image: osixia/openldap:1.1.7
+    networks: ['ldap']
+    ports: ['389']
+    env:
+      - LDAP_ORGANISATION={{ ldap_organisation }}
+      - LDAP_DOMAIN={{ ldap_domain }}
+      - LDAP_ADMIN_PASSWORD={{ ldap_admin_password }}
+    # volumes:
+    #   - type=bind,src={{ volume_mount_dir }}/repo/etc/ldap/slapd.d,dst=/etc/ldap/slapd.d
+    #   - type=bind,src={{ volume_mount_dir }}/repo/var/lib/ldap,dst=/var/lib/ldap
+
+- include: ../../docker-service/tasks/main.yml
+  vars:
+    name: ldap-admin
+    image: osixia/phpldapadmin:0.6.11
+    networks: ['ldap', 'proxy']
+    ports: ['80']
+    env:
+      - PHPLDAPADMIN_LDAP_HOSTS=ldap
+      - PHPLDAPADMIN_HTTPS=false
+

@@ -1,0 +1,5 @@
+---
+
+- include: by-node.yml
+  delegate_to: "{{ item }}"
+  with_items: "{{ groups[group_name] }}"

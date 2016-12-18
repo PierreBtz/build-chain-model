@@ -1,0 +1,15 @@
+docker_extra: ""
+
+debian_version: jessie
+
+docker_service: docker.service
+docker_service_dest: /etc/systemd/system/multi-user.target.wants/docker.service
+
+insecure_registry: 127.0.0.1:5000
+
+log_driver: syslog
+
+docker_py_version: 1.8.1
+
+users:
+  - vagrant
