@@ -1,4 +1,0 @@
----
-volume_name: jenkins
-gluster_brick_dir: /data/gluster/bricks
-gluster_mount_dir: /mnt

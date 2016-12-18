@@ -1,9 +1,0 @@
-
-- name: Install ntp
-  apt: name={{ item }} state=installed
-  with_items:
-    - ntp
-
-- name: ntp is running
-  service: name=ntp state=started enabled=yes
-

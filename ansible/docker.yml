@@ -1,7 +1,0 @@
-- hosts: docker
-  become: true
-  roles:
-    - firewall
-    - docker
-    - docker-swarm
-

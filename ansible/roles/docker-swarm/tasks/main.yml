@@ -1,5 +1,0 @@
-
-- include: swarm.yml
-
-- include: docker-volume-local-persist.yml
-
